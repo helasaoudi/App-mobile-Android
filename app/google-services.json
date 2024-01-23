@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "153660935736",
+    "project_id": "gestion-de-commerce",
+    "storage_bucket": "gestion-de-commerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153660935736:android:2c73319ff7e04ac03ca0cd",
+        "android_client_info": {
+          "package_name": "com.example.gestiondecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC02Hpxt_Rjbr6UE1L_u64C99hezRF-aRo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
