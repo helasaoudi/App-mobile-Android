@@ -13,7 +13,7 @@
         android:theme="@style/Theme.GestionDeCommerce"
         tools:targetApi="31">
         <activity
-            android:name=".Iteam_comercial"
+            android:name=".iteam_commercial"
             android:exported="false" />
         <activity
             android:name=".interface_client"
@@ -22,7 +22,7 @@
             android:name=".interface_admin"
             android:exported="false" />
         <activity
-            android:name=".interface_commercial"
+            android:name=".interface_commercial1"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

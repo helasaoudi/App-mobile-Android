@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorValid">#00FF00</color> <!-- Couleur verte pour la validation -->
+    <color name="colorInvalid">#FF0000</color> <!-- Couleur rouge pour la non-validation -->
 </resources>

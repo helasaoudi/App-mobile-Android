@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                                             else
                                                 if (email.equals(documentEmail) && psw.equals(documentPsw) && "commercial".equals(documentRole)) {
                                                     // Rediriger vers ClientActivity
-                                                    Intent intent = new Intent(MainActivity.this,interface_commercial.class);
+                                                    Intent intent = new Intent(MainActivity.this, interface_commercial1.class);
                                                     startActivity(intent);
                                                     finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
                                                     return;

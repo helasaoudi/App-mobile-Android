@@ -1,12 +1,19 @@
 package com.example.gestiondecommerce;
 
+import com.google.firebase.database.PropertyName;
+
 public class MVT {
+    @PropertyName("id")
+    private  String id ;
+
     private  String idClient ;
     private String commercial ;
     private String Date ;
-    private   int Montant ;
+    private   int  montant ;
     private boolean validation_commercial ;
     private boolean validation_admin ;
+
+
 
     public String getIdClient() {
         return idClient;
@@ -21,7 +28,11 @@ public class MVT {
     }
 
     public int getMontant() {
-        return Montant;
+        return montant;
+    }
+
+    public void setMontant(int montant) {
+        this.montant = montant;
     }
 
     public boolean isValidation_commercial() {
@@ -44,9 +55,15 @@ public class MVT {
         Date = date;
     }
 
-    public void setMontant(int montant) {
-        Montant = montant;
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 
     public void setValidation_commercial(boolean validation_commercial) {
         this.validation_commercial = validation_commercial;

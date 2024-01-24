@@ -32,11 +32,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="150dp"
-        android:layout_height="25dp"
+        android:layout_width="178dp"
+        android:layout_height="64dp"
         android:text="login"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="225dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="186dp" />
 
     <Button
         android:id="@+id/btn"
@@ -46,4 +48,5 @@
         android:text="login"
         app:layout_constraintTop_toBottomOf="@+id/Password"
         tools:layout_editor_absoluteX="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
