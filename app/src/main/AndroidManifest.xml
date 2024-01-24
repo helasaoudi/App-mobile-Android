@@ -13,8 +13,8 @@
         android:theme="@style/Theme.GestionDeCommerce"
         tools:targetApi="31">
         <activity
-            android:name=".iteam_commercial"
-            android:exported="false" />
+            android:name=".iteam_comercial"
+            android:exported    ="false" />
         <activity
             android:name=".interface_client"
             android:exported="false" />

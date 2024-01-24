@@ -56,26 +56,27 @@ public class MainActivity extends AppCompatActivity {
                                             if (email.equals(documentEmail) && psw.equals(documentPsw) && "client".equals(documentRole)) {
                                                 // Rediriger vers ClientActivity
                                                 Intent intent = new Intent(MainActivity.this,interface_client.class);
+                                                intent.putExtra("id", document.getId());
                                                 startActivity(intent);
                                                 finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
                                                 return;
                                             }
                                             else
-                                                if (email.equals(documentEmail) && psw.equals(documentPsw) && "commercial".equals(documentRole)) {
-                                                    // Rediriger vers ClientActivity
-                                                    Intent intent = new Intent(MainActivity.this, interface_commercial1.class);
-                                                    startActivity(intent);
-                                                    finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
-                                                    return;
-                                                }
-                                                else
-                                                if (email.equals(documentEmail) && psw.equals(documentPsw) && "admin".equals(documentRole)) {
-                                                    // Rediriger vers ClientActivity
-                                                    Intent intent = new Intent(MainActivity.this,interface_admin.class);
-                                                    startActivity(intent);
-                                                    finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
-                                                    return;
-                                                }
+                                            if (email.equals(documentEmail) && psw.equals(documentPsw) && "commercial".equals(documentRole)) {
+                                                // Rediriger vers ClientActivity
+                                                Intent intent = new Intent(MainActivity.this, interface_commercial1.class);
+                                                startActivity(intent);
+                                                finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
+                                                return;
+                                            }
+                                            else
+                                            if (email.equals(documentEmail) && psw.equals(documentPsw) && "admin".equals(documentRole)) {
+                                                // Rediriger vers ClientActivity
+                                                Intent intent = new Intent(MainActivity.this,interface_admin.class);
+                                                startActivity(intent);
+                                                finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
+                                                return;
+                                            }
                                         }
 
                                         Toast.makeText(MainActivity.this, "Aucun utilisateur correspondant trouvé", Toast.LENGTH_SHORT).show();

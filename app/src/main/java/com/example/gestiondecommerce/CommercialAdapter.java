@@ -98,10 +98,9 @@ public class CommercialAdapter extends RecyclerView.Adapter<CommercialAdapter.co
             });
         }
 
-}
+    }
 
     public interface OnItemClickListener {
         void onItemClick(MVT item);
     }
 }
-

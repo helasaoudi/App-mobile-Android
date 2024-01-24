@@ -60,7 +60,7 @@ public class interface_admin extends AppCompatActivity {
     }
 
 
-        // Déplacer la définition de la méthode à l'extérieur de onCreate()
+    // Déplacer la définition de la méthode à l'extérieur de onCreate()
     public void loadDataFromFirestore() {
         mvtCollection
                 //.whereEqualTo("validation_admin", false)
@@ -120,6 +120,6 @@ public class interface_admin extends AppCompatActivity {
             Toast.makeText(this, "Liste mvtList est null ou vide", Toast.LENGTH_SHORT).show();
         }
 
-}
+    }
 
 }

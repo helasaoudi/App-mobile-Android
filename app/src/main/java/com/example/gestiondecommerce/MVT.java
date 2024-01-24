@@ -1,5 +1,4 @@
 package com.example.gestiondecommerce;
-
 import com.google.firebase.database.PropertyName;
 
 public class MVT {
@@ -24,6 +23,8 @@ public class MVT {
     }
 
     public String getDate() {
+
+
         return Date;
     }
 

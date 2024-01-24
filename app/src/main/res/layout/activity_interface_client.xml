@@ -1,16 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="32dp"
+    android:paddingHorizontal="20dp"
     tools:context=".interface_client">
 
-    <TextView
-        android:id="@+id/textView"
+    <EditText
+        android:id="@+id/montantInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Montant"/>
+
+    <Spinner
+        android:id="@+id/commercialesSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/montantInput"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/submitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Client"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="317dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/commercialesSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="Submit"/>
+
+    <!-- New Button -->
+    <Button
+        android:id="@+id/enAttendBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/showMVTsBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="En Attend" />
+
+    <Button
+        android:id="@+id/showMVTsBtn"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="Historique" />
+
+</RelativeLayout>
