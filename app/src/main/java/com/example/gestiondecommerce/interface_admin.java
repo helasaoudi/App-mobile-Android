@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -49,21 +50,18 @@ public class interface_admin extends AppCompatActivity {
 
         Button btnLogout = findViewById(R.id.button1);
         btnLogout.setOnClickListener(view -> {
-            // Déconnexion ici (si nécessaire)
 
-            // Redirection vers MainActivity
             Intent intent = new Intent(interface_admin.this, MainActivity.class);
             startActivity(intent);
-            finish(); // Facultatif, selon le comportement que vous souhaitez
+            finish();
         });
 
     }
 
 
-        // Déplacer la définition de la méthode à l'extérieur de onCreate()
     public void loadDataFromFirestore() {
         mvtCollection
-                //.whereEqualTo("validation_admin", false)
+                .whereEqualTo("validation_admin", false)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -73,7 +71,7 @@ public class interface_admin extends AppCompatActivity {
                             MVT mvt = document.toObject(MVT.class);
                             mvtList.add(mvt);
                         }
-
+                        calculateAndSetTotal();
                         // Mettez à jour les données de l'adaptateur
                         commercialAdapter.updateData(mvtList);
                     } else {
@@ -121,5 +119,12 @@ public class interface_admin extends AppCompatActivity {
         }
 
 }
-
+    private void calculateAndSetTotal() {
+        int sum = 0;
+        for (MVT value : mvtList) {
+            sum = sum + value.getMontant();
+        }
+        TextView t = findViewById(R.id.textView9);
+        t.setText("Total: " + String.valueOf(sum));
+    }
 }

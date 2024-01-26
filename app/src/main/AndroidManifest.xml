@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GestionDeCommerce"
         tools:targetApi="31">
         <activity
+            android:name=".interface_admin_principal"
+            android:exported="false" />
+        <activity
+            android:name=".Sign_up"
+            android:exported="false" />
+        <activity
             android:name=".iteam_commercial"
             android:exported="false" />
         <activity

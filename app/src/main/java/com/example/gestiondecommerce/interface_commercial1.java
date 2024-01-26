@@ -13,7 +13,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class interface_commercial1 extends AppCompatActivity {
@@ -22,6 +25,11 @@ public class interface_commercial1 extends AppCompatActivity {
     private FirebaseFirestore db;
     private CollectionReference mvtCollection;
     private int currentMVTIndex = 0;
+    Date currentDate = new Date(); // pour travailler avec l'ancienne API de date
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    // Convertissez la date en chaîne de caractères
+    String formattedDate = dateFormat.format(currentDate);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,31 +111,43 @@ public class interface_commercial1 extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            mvtCollection
-                                    .document(document.getId())
+                            String documentId = document.getId();
+
+                            // Mettez à jour le champ "validation_commercial" en true
+                            mvtCollection.document(documentId)
                                     .update("validation_commercial", true)
                                     .addOnSuccessListener(aVoid -> {
-                                        currentItem.setValidation_commercial(true);
-                                        mvtList.remove(currentItem);
-                                        loadDataFromFirestore();
-                                        updateTextViews(mvtList);
-                                        currentMVTIndex++;
+                                        // Mettez à jour le champ "date"
+                                        mvtCollection.document(documentId)
+                                                .update("date", formattedDate)
+                                                .addOnSuccessListener(aVoid1 -> {
+                                                    currentItem.setValidation_commercial(true);
+                                                    currentItem.setDate(formattedDate);
+                                                    mvtList.remove(currentItem);
 
-                                        // Charger les données après la mise à jour
-                                        loadDataFromFirestore();
+                                                    // Charger les données après la mise à jour
+                                                    loadDataFromFirestore();
+                                                    updateTextViews(mvtList);
+                                                    currentMVTIndex++;
 
-                                        if (currentMVTIndex < mvtList.size()) {
-                                            updateTextViews(mvtList);
-                                        }
+                                                    if (currentMVTIndex < mvtList.size()) {
+                                                        updateTextViews(mvtList);
+                                                    }
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Toast.makeText(this, "Erreur lors de la mise à jour de la date", Toast.LENGTH_SHORT).show();
+                                                });
                                     })
-                                    .addOnFailureListener(e -> Toast.makeText(this, "Erreur lors de la validation commerciale", Toast.LENGTH_SHORT).show());
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(this, "Erreur lors de la validation commerciale", Toast.LENGTH_SHORT).show();
+                                    });
                         }
                     })
-                    .addOnFailureListener(e -> Toast.makeText(this, "Erreur lors de la récupération des documents", Toast.LENGTH_SHORT).show());
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Erreur lors de la récupération des documents", Toast.LENGTH_SHORT).show();
+                    });
         } else {
             // Handle the case when all items in the list are processed
             // For example, show a message or perform appropriate actions
         }
-
-    }
-}
+    }}

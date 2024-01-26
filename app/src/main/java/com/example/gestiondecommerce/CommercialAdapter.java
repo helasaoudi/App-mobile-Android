@@ -41,6 +41,8 @@ public class CommercialAdapter extends RecyclerView.Adapter<CommercialAdapter.co
 
         holder.textViewClientName.setText("client Name :" + currentItem.getIdClient());
         holder.textViewAmount.setText("Montant : " + String.valueOf(currentItem.getMontant()));
+        holder.textView8.setText("Date : " + String.valueOf(currentItem.getDate()));
+
 
         if (currentItem.isValidation_commercial()) {
             holder.imageViewValidation.setImageResource(R.drawable.valide);
@@ -75,6 +77,7 @@ public class CommercialAdapter extends RecyclerView.Adapter<CommercialAdapter.co
         TextView textViewAmount;
         TextView textView6;
         TextView textView8;
+        TextView textView9;
         ImageView imageViewValidation;
         ImageView imageViewValidation1;
 
@@ -84,6 +87,8 @@ public class CommercialAdapter extends RecyclerView.Adapter<CommercialAdapter.co
             textViewAmount = itemView.findViewById(R.id.textView7);
             textView6 = itemView.findViewById(R.id.textView6);
             textView8 = itemView.findViewById(R.id.textView8);
+            textView9 = itemView.findViewById(R.id.textView9);
+
             imageViewValidation = itemView.findViewById(R.id.imageViewValidation);
             imageViewValidation1= itemView.findViewById(R.id.imageViewValidation1);
 
