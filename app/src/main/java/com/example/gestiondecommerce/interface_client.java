@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -110,7 +109,10 @@ public class interface_client extends AppCompatActivity implements AdapterView.O
         showMVTsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMVTsDialog();
+                Intent i = new Intent(interface_client.this,MvtListActivity.class);
+                i.putExtra("id", intent.getStringExtra("id"));
+                //showMVTsDialog();
+                startActivity(i);
             }
         });
 
@@ -126,7 +128,6 @@ public class interface_client extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String nom= ((User) parent.getItemAtPosition(position)).toString();
-        Toast.makeText(interface_client.this, "selected",Toast.LENGTH_LONG).show();;
     }
 
     @Override
@@ -164,7 +165,7 @@ public class interface_client extends AppCompatActivity implements AdapterView.O
         // Show the AlertDialog
         builder.create().show();
     }
-    private MVTListAdapter mvtAdapter;
+    private MVTListAdapter1 mvtAdapter;
 
     private void showAttDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -179,7 +180,7 @@ public class interface_client extends AppCompatActivity implements AdapterView.O
         getAttFromDatabase(new MvtCallback() {
             @Override
             public void onCallback(List<MVT> mvtList) {
-                mvtAdapter = new MVTListAdapter(interface_client.this, mvtList);
+                mvtAdapter = new MVTListAdapter1(interface_client.this, mvtList);
                 mvtListView.setAdapter(mvtAdapter);
 
             }
@@ -187,7 +188,9 @@ public class interface_client extends AppCompatActivity implements AdapterView.O
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                updateDatabaseWithEditedAmounts(mvtAdapter.getMvtList());
+                if(!mvtAdapter.getMvtList().isEmpty()){
+                    updateDatabaseWithEditedAmounts(mvtAdapter.getMvtList());
+                }
                 dialogInterface.dismiss();
             }
         });
@@ -234,6 +237,8 @@ public class interface_client extends AppCompatActivity implements AdapterView.O
                                mvt.setCommercial(document.getString("commercial"));
                                mvt.setDate(document.getString("date"));
                                mvt.setMontant(Integer.parseInt(String.valueOf(document.get("montant"))));
+                               mvt.setValidation_admin(true);
+                               mvt.setValidation_commercial(true);
                                mouvmnts.add(mvt);
                            }
                        }
