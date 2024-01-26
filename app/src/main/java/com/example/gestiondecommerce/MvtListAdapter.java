@@ -2,11 +2,14 @@ package com.example.gestiondecommerce;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,10 +23,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.example.gestiondecommerce.MVT;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -120,10 +127,35 @@ public class MvtListAdapter extends ArrayAdapter<MVT> {
 
             // Notify the user that the PDF has been generated successfully
             Toast.makeText(getContext(), "PDF generated successfully", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
+            openPdfWithDefaultViewer(pdfFilePath);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
+            // Handle exceptions accordingly
+            Toast.makeText(getContext(), "Error generating PDF", Toast.LENGTH_SHORT).show();
+        }catch (IOException ex){
+            ex.printStackTrace();
             // Handle exceptions accordingly
             Toast.makeText(getContext(), "Error generating PDF", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void openPdfWithDefaultViewer(String pdfFilePath) {
+        File file = new File(pdfFilePath);
+
+        // Get the URI using FileProvider
+        Uri fileUri = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".fileprovider", file);
+
+        // Create an Intent to open the PDF file with the default PDF viewer
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(fileUri, "application/pdf");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        try {
+            getContext().startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            // Handle the case where no PDF viewer app is available on the device
+            Toast.makeText(getContext(), "No PDF viewer app found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
