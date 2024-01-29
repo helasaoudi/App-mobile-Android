@@ -1,6 +1,14 @@
 package com.example.gestiondecommerce;
 
 public class User {
+
+
+    private String Id;
+    private  String email ;
+    private  String password ;
+    private   String name ;
+    private  String role ;
+    private int tel ;
     public String getId() {
         return Id;
     }
@@ -8,16 +16,18 @@ public class User {
     public void setId(String id) {
         Id = id;
     }
-
-    private String Id;
-    private  String email ;
-    private  String password ;
-    private   String name ;
-    private  String role ;
-
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public User(String id, String email, String password, String name, String role, int tel) {
+        Id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.role = role;
+        this.tel = tel;
     }
 
     public User() {
@@ -26,6 +36,10 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setTel(int tel) {
+        this.tel = tel;
     }
 
     public String getPassword() {
@@ -54,6 +68,10 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getTel(){
+        return String.valueOf(this.tel);
     }
 
     @Override

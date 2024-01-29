@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -41,11 +42,16 @@ public class MainActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(MainActivity.this, "L'e-mail est vide", Toast.LENGTH_SHORT).show();
                 } else {
+                    ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setMessage("Authentification en cours...");
+                    progressDialog.show();
+
                     db.collection("User")
                             .get()
                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    progressDialog.dismiss();
                                     if (task.isSuccessful()) {
                                         for (QueryDocumentSnapshot document : task.getResult()) {
                                             String documentEmail = document.getString("email");
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                                                 // Rediriger vers ClientActivity
                                                 Intent intent = new Intent(MainActivity.this,interface_client.class);
                                                 intent.putExtra("id", document.getId());
+                                                intent.putExtra("nom", document.getString("name"));
                                                 startActivity(intent);
                                                 finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
                                                 return;
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                             else
                                             if (email.equals(documentEmail) && psw.equals(documentPsw) && "admin".equals(documentRole)) {
                                                 // Rediriger vers ClientActivity
-                                                Intent intent = new Intent(MainActivity.this,interface_admin.class);
+                                                Intent intent = new Intent(MainActivity.this, interface_admin_principal.class);
                                                 startActivity(intent);
                                                 finish();  // Optionnel : fermer cette activité pour éviter le retour en arrière
                                                 return;
@@ -82,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(MainActivity.this, "Aucun utilisateur correspondant trouvé", Toast.LENGTH_SHORT).show();
 
                                     } else {
-                                        Log.w(TAG, "Error getting documents.", task.getException());
+                                        Log.w(TAG, "Erreur d'authentification!.", task.getException());
                                     }
                                 }
                             });

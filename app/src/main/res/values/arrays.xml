@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="roles">
+        <item>Commercial</item>
+        <item>Admin</item>
+        <item>Client</item>
+    </string-array>
+</resources>

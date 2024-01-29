@@ -39,8 +39,10 @@ public class CommercialAdapter extends RecyclerView.Adapter<CommercialAdapter.co
     public void onBindViewHolder(@NonNull commercialViewHolder holder, int position) {
         MVT currentItem = listeClient.get(position);
 
-        holder.textViewClientName.setText("client Name :" + currentItem.getIdClient());
-        holder.textViewAmount.setText("Montant : " + String.valueOf(currentItem.getMontant()));
+        holder.client.setText("client Name :" + currentItem.getIdClient());
+        holder.montant.setText("Montant : " + String.valueOf(currentItem.getMontant()));
+        holder.date.setText("Date : " + String.valueOf(currentItem.getDate()));
+
 
         if (currentItem.isValidation_commercial()) {
             holder.imageViewValidation.setImageResource(R.drawable.valide);
@@ -71,19 +73,22 @@ public class CommercialAdapter extends RecyclerView.Adapter<CommercialAdapter.co
     }
 
     public class commercialViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewClientName;
-        TextView textViewAmount;
-        TextView textView6;
-        TextView textView8;
+        TextView client;
+        TextView montant;
+        TextView date;
+        TextView valCom;
+        TextView valAdm;
         ImageView imageViewValidation;
         ImageView imageViewValidation1;
 
         public commercialViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewClientName = itemView.findViewById(R.id.textView3);
-            textViewAmount = itemView.findViewById(R.id.textView7);
-            textView6 = itemView.findViewById(R.id.textView6);
-            textView8 = itemView.findViewById(R.id.textView8);
+            client = itemView.findViewById(R.id.client);
+            montant = itemView.findViewById(R.id.montant);
+            date = itemView.findViewById(R.id.date);
+            valAdm = itemView.findViewById(R.id.valAdm);
+            valCom = itemView.findViewById(R.id.valCom);
+
             imageViewValidation = itemView.findViewById(R.id.imageViewValidation);
             imageViewValidation1= itemView.findViewById(R.id.imageViewValidation1);
 

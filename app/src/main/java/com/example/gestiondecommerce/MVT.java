@@ -4,7 +4,7 @@ import com.google.firebase.database.PropertyName;
 public class MVT {
     @PropertyName("id")
     private  String id ;
-
+    private String nomClient;
     private  String idClient ;
     private String commercial ;
     private String Date ;
@@ -12,7 +12,13 @@ public class MVT {
     private boolean validation_commercial ;
     private boolean validation_admin ;
 
+    public void setNomClient(String nomClient) {
+        this.nomClient = nomClient;
+    }
 
+    public String getNomClient() {
+        return nomClient;
+    }
 
     public String getIdClient() {
         return idClient;
@@ -23,7 +29,6 @@ public class MVT {
     }
 
     public String getDate() {
-
 
         return Date;
     }

@@ -10,42 +10,47 @@
     android:layout_margin="8dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="402dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/client"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="28dp"
             android:text="Client Name"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            tools:layout_editor_absoluteX="4dp" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/montant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Montant"
-            android:textSize="16sp" />
+            tools:layout_editor_absoluteX="4dp" />
 
-        <!-- Validation commerciale -->
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Date"
+            tools:layout_editor_absoluteX="4dp" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="28dp">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/valCom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Validation commerciale : "
                 android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:textSize="16sp" />
+                android:layout_centerVertical="true" />
 
             <ImageView
                 android:id="@+id/imageViewValidation"
@@ -54,23 +59,21 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/valide"
-                android:visibility="gone" /> <!-- Initially invisible -->
+                android:visibility="gone" /> <!-- Initialement invisible -->
 
         </RelativeLayout>
-
-        <!-- Validation Admin -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="28dp">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/valAdm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Validation Admin :"
-                android:textSize="16sp" />
-
+                tools:layout_editor_absoluteX="199dp"
+                tools:layout_editor_absoluteY="99dp" />
             <ImageView
                 android:id="@+id/imageViewValidation1"
                 android:layout_width="87dp"
@@ -78,10 +81,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/valide"
-                android:visibility="gone" /> <!-- Initially invisible -->
-
+                android:visibility="gone" /> <!-- Initialement invisible -->
         </RelativeLayout>
 
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
